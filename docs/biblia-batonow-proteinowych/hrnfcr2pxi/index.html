@@ -1,31 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <title>Twój dostęp · Biblia Batonów Proteinowych</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-  html, body { margin:0; background:#f8fafc; color:#1e293b; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  .wrap { max-width:560px; margin:0 auto; padding:64px 20px; text-align:center; }
-  .badge { display:inline-block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; background:#fef3c7; color:#92400e; padding:6px 12px; border-radius:99px; font-weight:700; }
-  h1 { font-size:28px; line-height:1.2; margin:18px 0 10px; }
-  p { font-size:17px; line-height:1.55; color:#475569; }
-  .card { background:#fff; border:1px solid #e2e8f0; border-top:4px solid #f59e0b; border-radius:16px; padding:24px 20px; margin-top:28px; }
-  .dot { display:inline-block; width:10px; height:10px; border-radius:50%; background:#16a34a; margin-right:8px; animation:p 1.6s infinite; }
-  @keyframes p { 50% { opacity:.3; } }
-  @media (prefers-reduced-motion: reduce) { .dot { animation:none; } }
+:root{--bg:#f8fafc;--paper:#ffffff;--ink:#1e293b;--ink-soft:#475569;--accent:#f59e0b;--accent-dark:#b45309;--line:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:'Inter',-apple-system,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Nunito',Arial,sans-serif;line-height:1.15}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.hero{background:linear-gradient(160deg,#1e293b,#334155);color:#fff;padding:48px 0 72px;text-align:center}
+.hero .kicker{display:inline-block;background:var(--accent);color:#1e293b;border-radius:99px;padding:5px 14px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(28px,6vw,46px);margin-bottom:10px;font-weight:900}
+.hero p{font-size:18px;opacity:.92;max-width:640px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.stats span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:8px 16px;font-weight:700;font-size:15px}
+.core{position:relative;margin:-40px auto 36px;background:var(--paper);border:2px solid var(--accent);border-radius:20px;padding:26px;display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;box-shadow:0 18px 40px rgba(15,23,42,.10)}
+.core img{width:100%;height:auto;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);display:block}
+.tag{display:inline-block;background:var(--accent);color:#1e293b;border-radius:99px;padding:4px 12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.core h2{font-size:clamp(22px,4vw,32px);margin-bottom:8px}
+.core p{color:var(--ink-soft);margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 26px;border-radius:12px;background:var(--accent);color:#1e293b;font-weight:800;font-size:17px;text-decoration:none;box-shadow:0 4px 0 var(--accent-dark)}
+.sec{margin:0 0 40px}
+.sec h2{font-size:clamp(22px,4vw,30px);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.card img{width:100%;aspect-ratio:595/842;object-fit:cover;border-radius:10px;display:block}
+.card .n{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark)}
+.card h3{font-size:18px}
+.card p{color:var(--ink-soft);font-size:15px;flex:1}
+.card .go{font-weight:800;color:var(--accent-dark)}
+.pasos{counter-reset:p;list-style:none;display:grid;gap:10px}
+.pasos li{counter-increment:p;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px 14px 58px;position:relative}
+.pasos li::before{content:counter(p);position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#1e293b;font-weight:800;display:flex;align-items:center;justify-content:center}
+.foot{text-align:center;color:var(--ink-soft);font-size:13px;padding:10px 0 40px}
+@media (max-width:640px){.core{grid-template-columns:1fr;text-align:center;padding:20px}.core img{max-width:170px;margin:0 auto}.btn{width:100%}}
 </style>
 </head>
 <body>
+<header class="hero">
   <div class="wrap">
-    <span class="badge">Zakup potwierdzony</span>
-    <h1>Biblia Batonów Proteinowych · 8 Przepisów + 5 Bonusów (270 Przepisów)</h1>
-    <p>Dziękujemy! Kończymy przygotowywać Twoje materiały. Ta sama strona zaktualizuje się i znajdziesz tu wszystkie pliki.</p>
-    <div class="card">
-      <p><span class="dot"></span><strong>Zapisz ten link</strong></p>
-      <p>To Twój dożywotni dostęp. Wróć tu za kilka godzin, a znajdziesz e-book główny i wszystkie bonusy.</p>
-    </div>
+    <span class="kicker">Zakup potwierdzony</span>
+    <h1>Biblia Batonów Proteinowych</h1>
+    <p>Wszystkie Twoje materiały w jednym miejscu. Zapisz ten link — to Twój dożywotni dostęp.</p>
+    <div class="stats"><span>8 przepisów w e-booku</span><span>5 bonusów</span><span>270 dodatkowych przepisów</span></div>
   </div>
+</header>
+<main class="wrap">
+  <section class="core">
+    <img src="core.jpg" alt="Biblia Batonów Proteinowych" width="180" height="255">
+    <div>
+      <span class="tag">E-book główny</span>
+      <h2>Biblia Batonów Proteinowych</h2>
+      <p>8 sprawdzonych przepisów bez piekarnika, technika, która nie pozwala batonom się rozpadać, tanie i ładne pakowanie oraz dwutygodniowy plan pierwszej sprzedaży.</p>
+      <a class="btn" href="Biblia-Batonow-Proteinowych.pdf" download>Pobierz PDF (56 str.)</a>
+    </div>
+  </section>
+  <section class="sec">
+    <h2>Twoje bonusy</h2>
+    <div class="grid">
+      <a class="card" href="Bonus-1-30-Zdrowych-Przepisow-na-Ciasteczka.pdf" download>
+        <img src="b1.jpg" alt="30 Zdrowych Przepisów na Ciasteczka" loading="lazy">
+        <span class="n">Bonus #1</span>
+        <h3>30 Zdrowych Przepisów na Ciasteczka</h3>
+        <p>Ciasteczka bez rafinowanego cukru, które łatwo dodasz do swojej oferty.</p>
+        <span class="go">Pobierz PDF (33 str.) ↓</span>
+      </a><a class="card" href="Bonus-2-90-Zdrowych-Przepisow-na-Szybkie-Wypieki.pdf" download>
+        <img src="b2.jpg" alt="90 Zdrowych Przepisów na Szybkie Wypieki" loading="lazy">
+        <span class="n">Bonus #2</span>
+        <h3>90 Zdrowych Przepisów na Szybkie Wypieki</h3>
+        <p>Chlebki i ciasta z keksówki, które świetnie sprzedają się na kawałki i na prezent.</p>
+        <span class="go">Pobierz PDF (59 str.) ↓</span>
+      </a><a class="card" href="Bonus-3-90-Zdrowych-Przepisow-na-Kulki-Mocy.pdf" download>
+        <img src="b3.jpg" alt="90 Zdrowych Przepisów na Kulki Mocy" loading="lazy">
+        <span class="n">Bonus #3</span>
+        <h3>90 Zdrowych Przepisów na Kulki Mocy</h3>
+        <p>Najszybszy produkt do oferty: bez pieczenia, z miski i lodówki.</p>
+        <span class="go">Pobierz PDF (59 str.) ↓</span>
+      </a><a class="card" href="Bonus-4-60-Zdrowych-Przepisow-na-Batony-Proteinowe.pdf" download>
+        <img src="b4.jpg" alt="60 Zdrowych Przepisów na Batony Proteinowe" loading="lazy">
+        <span class="n">Bonus #4</span>
+        <h3>60 Zdrowych Przepisów na Batony Proteinowe</h3>
+        <p>60 nowych smaków na tej samej technice — stali klienci zawsze dostaną „coś nowego”.</p>
+        <span class="go">Pobierz PDF (50 str.) ↓</span>
+      </a><a class="card" href="Bonus-5-Opakowanie-Ktore-Sprzedaje.pdf" download>
+        <img src="b5.jpg" alt="Opakowanie, Które Sprzedaje: Nowoczesny Poradnik" loading="lazy">
+        <span class="n">Bonus #5</span>
+        <h3>Opakowanie, Które Sprzedaje: Nowoczesny Poradnik</h3>
+        <p>Torebki kraft, naklejki, etykiety z alergenami i proste zdjęcia produktu.</p>
+        <span class="go">Pobierz PDF (34 str.) ↓</span>
+      </a>
+    </div>
+  </section>
+  <section class="sec">
+    <h2>Od czego zacząć</h2>
+    <ol class="pasos">
+      <li>Przeczytaj rozdziały 2 i 3 e-booka głównego: technika batonów bez pieczenia to podstawa wszystkiego.</li>
+      <li>Zrób pierwszą partię jednego z 4 podstawowych przepisów i daj ją do spróbowania bliskim.</li>
+      <li>Gdy batony wychodzą Ci powtarzalnie, sięgnij po bonusy i rozszerz ofertę.</li>
+    </ol>
+  </section>
+  <p class="foot">Materiały do użytku osobistego. Nie udostępniaj tego linku.</p>
+</main>
 </body>
 </html>
