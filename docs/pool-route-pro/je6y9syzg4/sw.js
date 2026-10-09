@@ -1,0 +1,4 @@
+const CACHE='pooltechpro-v1';
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','./index.html','./style.css?v=1','./app.js?v=1'])));self.skipWaiting()});
+self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('pooltechpro-')&&key!==CACHE)await caches.delete(key);await self.clients.claim()})()));
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==location.origin)return;e.respondWith((async()=>{try{const r=await fetch(e.request);if(r.ok){const c=await caches.open(CACHE);await c.put(e.request,r.clone())}return r}catch{const r=await caches.match(e.request);if(r)return r;if(e.request.mode==='navigate')return caches.match('./index.html');return Response.error()}})())});
